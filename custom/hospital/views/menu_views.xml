@@ -1,0 +1,16 @@
+<odoo>
+    <!-- Menu Structure -->
+    <menuitem id="hms_menu_root" name="HMS"/>
+
+    <menuitem id="hms_patient_menu" name="Hospital Management" parent="hms_menu_root"/>
+    <menuitem id="hms_patient_menu_action" name="Patients" parent="hms_patient_menu" action="action_hms_patients"/>
+    <menuitem id="hms_department_menu_action" name="Departments" parent="hms_patient_menu" action="action_hms_departments"/>
+    <menuitem id="hms_doctor_menu_action" name="Doctors" parent="hms_patient_menu" action="action_hms_doctors"/>
+
+    <!-- Patient Action -->
+    <record id="action_hms_patients" model="ir.actions.act_window">
+        <field name="name">Patients</field>
+        <field name="res_model">hms.patient</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

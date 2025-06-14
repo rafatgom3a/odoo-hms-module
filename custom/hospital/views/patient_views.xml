@@ -1,0 +1,79 @@
+<odoo>
+    <!-- Updated Patient Form View with Email -->
+    <record id="view_hms_patient_form" model="ir.ui.view">
+        <field name="name">hms.patient.form</field>
+        <field name="model">hms.patient</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="undetermined,good,fair,serious"/>
+                </header>
+                <sheet>
+                    <field name="image" widget="image" class="oe_avatar"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="first_name" placeholder="First Name" required="1"/>
+                            <field name="last_name" placeholder="Last Name" required="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="email" widget="email"/>
+                            <field name="birth_date"/>
+                            <field name="age" readonly="1"/>
+                            <field name="blood_type"/>
+                            <field name="pcr"/>
+                            <field name="cr_ratio" attrs="{'required': [('pcr', '=', True)]}"/>
+                        </group>
+                        <group>
+                            <field name="department_id"/>
+                            <field name="department_capacity" attrs="{'invisible': [('department_id', '=', False)]}"/>
+                            <field name="doctor_ids" attrs="{'readonly': [('department_id', '=', False)]}"/>
+                            <field name="address"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="History" attrs="{'invisible': [('age', '&lt;', 50)]}">
+                            <field name="history"/>
+                        </page>
+                        <page string="Log History">
+                            <field name="log_history_ids">
+                                <list>
+                                    <field name="date"/>
+                                    <field name="created_by"/>
+                                    <field name="description"/>
+                                </list>
+                                <form>
+                                    <group>
+                                        <field name="date"/>
+                                        <field name="created_by" readonly="1"/>
+                                        <field name="description"/>
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Updated Patient List View with Email -->
+    <record id="view_hms_patient_list" model="ir.ui.view">
+        <field name="name">hms.patient.list</field>
+        <field name="model">hms.patient</field>
+        <field name="type">list</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="first_name"/>
+                <field name="last_name"/>
+                <field name="email"/>
+                <field name="age"/>
+                <field name="blood_type"/>
+                <field name="pcr"/>
+                <field name="department_id"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+</odoo>
