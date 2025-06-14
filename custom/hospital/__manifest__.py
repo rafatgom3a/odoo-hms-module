@@ -6,10 +6,13 @@
         Hospital Management System
         ==========================
         This module provides functionality to manage:
-        - Patients with medical history and states
+        - Patients with medical history, states, and email validation
         - Doctors with patient assignments
         - Departments with capacity management
         - Log history tracking for patients
+        - CRM integration with customer-patient linking
+        - Email validation and uniqueness constraints
+        - Auto-calculated age based on birth date
             """,
     'depends': ['crm'],
     'data': [
